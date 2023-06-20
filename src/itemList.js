@@ -45,14 +45,15 @@ const styles = {
 
 function ItemList() {
 
+  const items = useSelector((state) => state.items); 
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getItemsAsync());
   }, [dispatch])
 
   
-  const items = useSelector((state) => state.items.items);
-  const [selectedItemId, setSelectedItemId] = useState(null);
+  
 
   console.log(items);
   const handleDeleteAll = () => {

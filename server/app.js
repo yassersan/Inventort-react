@@ -46,5 +46,29 @@ let items = [
     res.send(items);
   });
 
+  app.delete('/api/items/:itemID', (req, res) => {
+    
+  const foundItem = items.find(item => item.id === req.params.itemID);
+  const itemIndex = items.indexOf(foundItem);
+  
+  if (!foundItem) return res.status(404).send({ message: 'item not found' });
+
+  items.splice(itemIndex, 1);
+  res.json(foundItem);
+
+  });
+
+  app.patch('/api/items/:itemID', (req, res) => {
+    
+    const foundItem = items.find(item => item.id === req.params.itemID);
+    
+    
+    if (!foundItem) return res.status(404).send({ message: 'item not found' });
+  
+    foundItem.price = req.body;
+    res.json(items);
+    
+    });
+
 
 module.exports = app;

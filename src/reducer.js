@@ -1,4 +1,4 @@
-import { getItemsAsync } from "./thunks";
+
 
 const initialState = {
     items: []
@@ -22,10 +22,36 @@ const initialState = {
           items: [],
         };
 
-      case getItemsAsync.fulfilled:
+      case 'GET_ITEMS/success':
         return {
           ...state, items: action.payload,
         }
+
+        case 'ADD_ITEM/success':
+        return {
+          ...state,
+          items: [...state.items, action.payload],
+        };
+
+        case 'DELETE_ITEM/success':
+          return {
+              ...state,
+              items: state.items.filter((item) => item.id !== action.payload),
+          };
+
+        case 'EDIT_ITEM/success':
+          const { itemId, updatedPrice} = action.payload;
+          const updatedItems = state.items.map((item) => {
+            if (item.id === itemId) {
+              // Update the price of the item
+              return { ...item, price: updatedPrice };
+            }
+            return item;
+          });
+          return {
+             ...state,
+             items: updatedItems,
+          };
 
       default:
         return state;
