@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAllItems, deleteItem } from './actions';
+import { getItemsAsync } from './thunks';
 
 const styles = {
   itemListContainer: {
@@ -12,6 +13,7 @@ const styles = {
   itemCard: {
     border: '1px solid #ccc',
     borderRadius: '4px',
+
     padding: '10px',
     width: '300px',
     position: 'relative',
@@ -42,10 +44,17 @@ const styles = {
 };
 
 function ItemList() {
-  const items = useSelector((state) => state.items);
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getItemsAsync());
+  }, [dispatch])
+
+  
+  const items = useSelector((state) => state.items.items);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
+  console.log(items);
   const handleDeleteAll = () => {
     dispatch(deleteAllItems());
   };
