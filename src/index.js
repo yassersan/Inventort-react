@@ -5,6 +5,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import reducer from './reducer';
 import App from './App';
 
+
+
 const store = configureStore({
   reducer,
   devTools: true
@@ -16,6 +18,7 @@ root.render(
     <App />
   </Provider>,
 );
+
 
 
 export default store;

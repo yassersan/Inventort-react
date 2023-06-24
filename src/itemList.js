@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAllItems, deleteItem } from './actions';
-import { getItemsAsync } from './thunks';
+import { deleteItemAsync, getItemsAsync } from './thunks';
 
 const styles = {
   itemListContainer: {
@@ -60,8 +60,10 @@ function ItemList() {
     dispatch(deleteAllItems());
   };
 
-  const handleDeleteItem = (itemId) => {
-    dispatch(deleteItem(itemId));
+  const handleDeleteItem = async (itemId) => {
+
+   await dispatch(deleteItemAsync(itemId));
+  //  await dispatch(getItemsAsync())
     if (selectedItemId === itemId) {
       setSelectedItemId(null);
     }

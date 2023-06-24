@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from './actions';
+import { AddItemAsync, getItemsAsync } from './thunks';
+const { v4: uuid } = require('uuid');
 
 const styles = {
   formContainer: {
@@ -39,18 +41,22 @@ function ItemForm() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) =>  {
     e.preventDefault();
+    
 
-    const newItem = {
-      itemName,
-      description,
-      price,
-      image,
+    var newItem = {
+      "id": uuid(),
+      "itemName": itemName,
+      "description": description,
+      "price": price,
+      "image": image,
     };
 
-    dispatch(addItem(newItem));
 
+    await dispatch(AddItemAsync(newItem));
+    
+    // await dispatch(getItemsAsync());
     setItemName('');
     setDescription('');
     setPrice('');
