@@ -18,10 +18,29 @@ import ItemService from './service'
     thunkAPI.dispatch({ type: 'DELETE_ITEM/success', payload: id}); // feel free to name the action type whatever
   });
 
-  export const editItemAsync = createAsyncThunk('EDIT_ITEM', async (updatedItem, thunkAPI) => {
-    const { itemId, updatedPrice } = updatedItem;
-    await ItemService.editItem(itemId, updatedPrice);
-    thunkAPI.dispatch({ type: 'EDIT_ITEM/success', payload: { itemId, updatedPrice } });
-  });
+ 
+export const increaseQuantityAsync = createAsyncThunk(
+  'INCREASE_QUANTITY',
+  async (itemId, thunkAPI) => {
+    try {
+      await ItemService.increaseQuantity(itemId);
+      thunkAPI.dispatch({ type: 'INCREASE_QUANTITY', payload: { itemId } });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
+
+export const decreaseQuantityAsync = createAsyncThunk(
+  'DECREASE_QUANTITY',
+  async (itemId, thunkAPI) => {
+    try {
+      await ItemService.decreaseQuantity(itemId);
+      thunkAPI.dispatch({ type: 'DECREASE_QUANTITY', payload: { itemId } });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
   
   

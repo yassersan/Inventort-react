@@ -7,7 +7,7 @@ const getItems = async () => {
 
 const addItem = async (item) => {
   console.log(item);
-  const response = await fetch('http://localhost:3005/api/items', {
+  const response = await fetch('http://localhost:3005/api/items/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -43,13 +43,23 @@ const deleteItem = async (itemID) => {
 };
 
 
-const editItem = async (itemId, newPrice) => {
-  const response = await fetch('http://localhost:3005/api/items/' + itemId, {
+const increaseQuantity = async (itemId) => {
+  const response = await fetch('/api/edit/' + itemId, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ price: newPrice }),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    const errorMsg = data?.message;
+    throw new Error(errorMsg);
+  }
+
+  return data;
+};
+
+const decreaseQuantity = async (itemId) => {
+  const response = await fetch(`/api/items/${itemId}/decreaseQuantity`, {
+    method: 'PATCH',
   });
 
   const data = await response.json();
@@ -65,5 +75,6 @@ export default {
   getItems,
   addItem,
   deleteItem,
-  editItem
+  increaseQuantity,
+  decreaseQuantity,
 }

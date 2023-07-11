@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
     case 'DELETE_ITEM':
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        items: state.items.filter((item) => item._id !== action.payload),
       };
     case 'DELETE_ALL_ITEMS':
       return {
@@ -36,23 +36,30 @@ const reducer = (state = initialState, action) => {
     case 'DELETE_ITEM/success':
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        items: state.items.filter((item) => item.itemName !== action.payload),
 
       };
 
-    case 'EDIT_ITEM/success':
-  
-      const updatedItems = state.items.map((item) => {
-        if (item.id === action.payload.itemId) {
-          // Update the price of the item
-          return { ...item, price: action.payload.updatedPrice };
-        }
-        return item;
-      });
+      case 'INCREASE_QUANTITY':
       return {
         ...state,
-        items: updatedItems,
+        items: state.items.map((item) =>
+          item.itemName === action.payload.itemId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
       };
+
+      case 'Decrease_QUANTITY':
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item._id === action.payload.itemId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
+      };
+
 
     default:
       return state;
