@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const { v4: uuid } = require('uuid');
+
 var app = express();
 const mongoose = require('mongoose')
 const { error } = require('console');
