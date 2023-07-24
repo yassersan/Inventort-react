@@ -19,6 +19,9 @@
   "scripts": {
     "install-server": "cd server && npm install",
     "start-server": "cd server && node app.js",
+    "install-client": "cd src && npm install",
+    "build-client": "cd src && npm run build",
+    "start-client": "cd src && npm run start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
