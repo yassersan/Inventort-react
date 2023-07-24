@@ -24,6 +24,10 @@ app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+const corsOptions = {
+  origin: "https://inventory-manager-front-end.onrender.com", // frontend URI (ReactJS)
+}
+
 mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.cwczcnp.mongodb.net/Items?retryWrites=true&w=majority')
 .then(() => {
   console.log("conntected to db")
