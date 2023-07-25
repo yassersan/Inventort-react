@@ -1,5 +1,5 @@
 const getItems = async () => {
-  const res = await fetch('https://inventory-manager-im94.onrender.com', {
+  const res = await fetch('https://inventory-manager-im94.onrender.com/api/items', {
     method: 'GET'
   });
   return res.json();
