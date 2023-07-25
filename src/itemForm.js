@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from './actions';
 import { AddItemAsync, getItemsAsync } from './thunks';
-const { v4: uuid } = require('uuid');
+
 
 const styles = {
   formContainer: {
@@ -46,7 +46,6 @@ function ItemForm() {
     
 
     var newItem = {
-      "id": uuid(),
       "itemName": itemName,
       "description": description,
       "price": price,

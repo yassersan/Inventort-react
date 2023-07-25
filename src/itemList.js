@@ -113,7 +113,7 @@ function ItemList() {
       <div style={styles.itemListContainer}>
         {items.map((item) => (
           <div
-            key={item.id}
+            key={item._idid}
             style={styles.itemCard}
             onClick={() => handleItemSelect(item._id)}
           >
