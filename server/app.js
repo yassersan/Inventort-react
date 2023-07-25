@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+require("dotenv").config();
 var app = express();
 const mongoose = require('mongoose')
 const { error } = require('console');
@@ -30,7 +30,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.cwczcnp.mongodb.net/Items?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
