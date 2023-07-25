@@ -32,6 +32,10 @@ app.use(cors(corsOptions));
 
 mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.cwczcnp.mongodb.net/Items?retryWrites=true&w=majority')
 .then(() => {
+  const PORT = process.env.PORT || 4000;
+  app.listen(PORT, () => {
+      console.log(`App is Listening on PORT ${PORT}`);
+  })
   console.log("conntected to db")
 }).catch((error) => {
   console.log(error)
