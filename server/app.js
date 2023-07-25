@@ -28,6 +28,8 @@ const corsOptions = {
   origin: "https://inventory-manager-front-end.onrender.com", // frontend URI (ReactJS)
 }
 
+app.use(cors(corsOptions));
+
 mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.cwczcnp.mongodb.net/Items?retryWrites=true&w=majority')
 .then(() => {
   console.log("conntected to db")
