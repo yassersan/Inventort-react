@@ -30,7 +30,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.cwczcnp.mongodb.net/Items?retryWrites=true&w=majority')
 .then(() => {
   const PORT = process.env.PORT || 8000
     app.listen(PORT, () => {
