@@ -1,5 +1,5 @@
 const getItems = async () => {
-  const res = await fetch('http://localhost:4000/api/items', {
+  const res = await fetch('https://inventory-manager-im94.onrender.com:${process.env.PORT || 4000}/api/items', {
     method: 'GET'
   });
   return res.json();
@@ -7,7 +7,7 @@ const getItems = async () => {
 
 const addItem = async (item) => {
   console.log(item);
-  const response = await fetch('http://localhost:4000/api/items/add', {
+  const response = await fetch('http://localhost:${process.env.PORT || 4000}/api/items/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ const addItem = async (item) => {
 };
 
 const deleteItem = async (itemID) => {
-  const response = await fetch('http://localhost:4000/api/items/' + itemID, {
+  const response = await fetch('http://localhost:${process.env.PORT || 4000}/api/items/' + itemID, {
     method: 'DELETE',
     headers: {"Content-Type":"application/json"},
     
