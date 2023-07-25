@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     fetch("https://inventory-manager-im94.onrender.com")
       .then((res) => res.json())
-      .then((data) => setMessage(data.message));
+      // .then((data) => setMessage(data.message));
   },[]);
 
   return (
