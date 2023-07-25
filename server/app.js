@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const { error } = require('console');
 const Item = require('./models/itemsModel')
 
-app.use(cors());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,11 +32,10 @@ app.use(cors(corsOptions));
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
-  const PORT = process.env.PORT || 4000;
-  app.listen(PORT, () => {
-      console.log(`App is Listening on PORT ${PORT}`);
-  })
-  console.log("conntected to db")
+  const PORT = process.env.PORT || 8000
+    app.listen(PORT, () => {
+        console.log(`App is Listening on PORT ${PORT}`);
+    })
 }).catch((error) => {
   console.log(error)
 })
