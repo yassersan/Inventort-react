@@ -1,3 +1,4 @@
+
 const request = require('supertest');
 const app = require('./app');
 const mongoose = require('mongoose');
@@ -14,9 +15,7 @@ beforeAll(async () => {
   db = mongoose.connection;
 });
 
-afterAll(async () => {
-  await db.close();
-});
+afterAll(() => setTimeout(() => process.exit(), 1000))
 
 // Sample item data to use in the test
 const sampleItem = {
